@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
-import XiaoMi from './app/XiaoMi.js';
+import XiaoMi from './app/XiaoMi/js/XiaoMi.js';
 import Loading from './app/Loading.js';
 
 

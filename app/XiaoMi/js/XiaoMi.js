@@ -242,7 +242,7 @@ export default class All extends Component {
                 />
                 <View>
                     <View style={styles.whole} >
-                        <Image source={require('./img/xiaomi/bg.png')} style={styles.bg}>
+                        <Image source={require('../img/bg.png')} style={styles.bg}>
                             <View style={styles.header}>
                                 <Text style={styles.text_city}>{today.basic.city}</Text>
                                 <Text style={styles.text_temp}>{today.now.tmp}°</Text>
@@ -289,8 +289,8 @@ export default class All extends Component {
                             }
                         />
                         <View style={styles.footer}>
-                            <Image source={require('./img/xiaomi/addcity.png')} style={styles.footer_img}/>
-                            <Image source={require('./img/xiaomi/setting.png')} style={styles.footer_img}/>
+                            <Image source={require('../img/addcity.png')} style={styles.footer_img}/>
+                            <Image source={require('../img/setting.png')} style={styles.footer_img}/>
                         </View>
                     </View>
                 </View>
