@@ -14,9 +14,9 @@ import Loding from './Loading'
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-var REQUEST_URL = 'https://free-api.heweather.com/v5/forecast?city=hefei&key=fb085091e2844bf1ae01a22249ce57f3';
 var REQUEST_URL_TODAY = 'https://free-api.heweather.com/v5/now?city=hefei&key=fb085091e2844bf1ae01a22249ce57f3';
 var REQUEST_URL_TODAY_AIR = 'https://free-api.heweather.com/v5/aqi?city=hefei&key=fb085091e2844bf1ae01a22249ce57f3';
+var REQUEST_URL_TODAY_AND_FUTURE = 'https://free-api.heweather.com/v5/forecast?city=hefei&key=fb085091e2844bf1ae01a22249ce57f3';
 
 const styles = StyleSheet.create({
     root:{
@@ -125,23 +125,6 @@ const styles = StyleSheet.create({
         width:20,
         height:20,
     },
-
-    slide2: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#97CAE5',
-    },
-    slide3: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#92BBD9',
-    },
-    text: {
-        color: '#fbffff',
-        fontSize: 16,
-    },
 });
 
 export default class All extends Component {
@@ -208,7 +191,7 @@ export default class All extends Component {
     }
 
     fetchData() {
-        fetch(REQUEST_URL, {method: 'GET'})
+        fetch(REQUEST_URL_TODAY_AND_FUTURE, {method: 'GET'})
             .then((response) => response.json())
             .then((responseData) => {
                 this.setState({
