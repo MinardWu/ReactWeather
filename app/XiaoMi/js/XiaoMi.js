@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
         color: '#fbffff',
         fontSize: 60,
     },
-    text_weather_and_air: {
+    text_weather: {
         paddingBottom:10,
         color: '#fbffff',
         fontSize: 12,
@@ -237,7 +237,7 @@ export default class All extends Component {
                 <StatusBar
                     backgroundColor='#3d8cbf'
                     translucent={true}
-                    hidden={false}
+                    hhidden={true}
                     animated={true}
                 />
                 <View>
@@ -246,7 +246,7 @@ export default class All extends Component {
                             <View style={styles.header}>
                                 <Text style={styles.text_city}>{today.basic.city}</Text>
                                 <Text style={styles.text_temp}>{today.now.tmp}°</Text>
-                                <Text style={styles.text_weather_and_air}>{today.now.cond.txt}  |  空气{today_air.aqi.city.qlty} {today_air.aqi.city.aqi} </Text>
+                                <Text style={styles.text_weather}>{today.now.cond.txt}  |  空气{today_air.aqi.city.qlty} {today_air.aqi.city.aqi} </Text>
                             </View>
 
                             <View style={styles.middle}>
@@ -294,15 +294,6 @@ export default class All extends Component {
                         </View>
                     </View>
                 </View>
-
-                {/*底部*/}
-                <View style={styles.slide2}>
-                    <Text style={styles.text}>Beautiful</Text>
-                </View>
-                <View style={styles.slide3}>
-                    <Text style={styles.text}>And simple</Text>
-                </View>
-
             </View>
         );
     }

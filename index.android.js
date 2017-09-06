@@ -8,13 +8,13 @@ import React, { Component } from 'react';
 import {
   AppRegistry,
   StyleSheet,
-  Text,
   View
 } from 'react-native';
 import Swiper from 'react-native-swiper';
 
-import XiaoMi from './app/XiaoMi/js/XiaoMi.js';
 import Loading from './app/Loading.js';
+import XiaoMi from './app/XiaoMi/js/XiaoMi.js';
+import Weather1 from './app/Weather1/js/Weather1.js';
 
 
 export default class WuWeather extends Component {
@@ -28,7 +28,7 @@ export default class WuWeather extends Component {
                 <XiaoMi/>
             </View>
             <View>
-                <Loading/>
+                <Weather1/>
             </View>
         </Swiper>
     );
