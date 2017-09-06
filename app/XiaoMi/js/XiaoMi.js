@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import {
     StyleSheet,
@@ -9,7 +8,7 @@ import {
     FlatList,
     StatusBar,
 } from 'react-native';
-import Loding from './Loading'
+import Loding from '../../Loading'
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -207,7 +206,6 @@ export default class All extends Component {
                 callback(error);
             });
     }
-
 
     renderLoadingView() {
         return (
