@@ -8,7 +8,6 @@ import {
     Dimensions,
     FlatList,
     StatusBar,
-    ScrollView,
 } from 'react-native';
 import Loding from './Loading'
 
