@@ -6,6 +6,7 @@ import {
     View,
     Dimensions,
     FlatList,
+    ScrollView,
     StatusBar,
 } from 'react-native';
 import Loding from '../../Loading'
@@ -18,38 +19,26 @@ var REQUEST_URL_TODAY_AIR = 'https://free-api.heweather.com/v5/aqi?city=hefei&ke
 var REQUEST_URL_TODAY_AND_FUTURE = 'https://free-api.heweather.com/v5/forecast?city=hefei&key=fb085091e2844bf1ae01a22249ce57f3';
 
 const styles = StyleSheet.create({
-    root:{
-        backgroundColor:"#f9f9f9",
-        width:SCREEN_WIDTH,
-        height:SCREEN_HEIGHT,
-        flexDirection:'column',
-        justifyContent:'flex-start',
-    },
     whole: {
-        backgroundColor:"#f9f9f9",
+        backgroundColor:"#fff",
         width:SCREEN_WIDTH,
         height:SCREEN_HEIGHT,
         flexDirection:'column',
-        justifyContent:'flex-start',
+        justifyContent:'center',
     },
     bg: {
         width:SCREEN_WIDTH,
-        height:SCREEN_HEIGHT*11/20,
+        height:SCREEN_HEIGHT*6/10,
         flexDirection:'column',
-        justifyContent:'space-between'
+        justifyContent:'center'
     },
     header:{
-        marginLeft:30,
-        marginTop:20,
-    },
-    text_city: {
-        paddingTop:8,
-        color: '#fbffff',
-        fontSize: 12,
+        alignItems:'center'
     },
     text_temp:{
         color: '#fbffff',
-        fontSize: 60,
+        fontSize: 70,
+        fontWeight:'900',
     },
     text_weather: {
         paddingBottom:10,
@@ -57,57 +46,42 @@ const styles = StyleSheet.create({
         fontSize: 12,
     },
 
-    middle:{
-        marginLeft:50,
-        marginRight:50,
-        marginBottom:10,
-        flexDirection:'row',
-        justifyContent:'space-between',
-        alignItems:'center'
+    flatlist:{
+        paddingTop:10,
     },
-    middle_item:{
-        flexDirection:'column',
-        alignItems:'center'
-    },
-    middle_item_text_title:{
-        color: '#fbffff',
-        fontSize: 12,
-    },
-    middle_item_text_value:{
-        color: '#fbffff',
-        fontSize: 24,
-    },
-
-    scrollview:{
-        borderRadius:25,
-        alignItems:'center'
-    },
-    scrollview_item:{
+    flatlist_item:{
         width:SCREEN_WIDTH,
         height:70,
-        paddingLeft:30,
-        paddingRight:30,
+        paddingLeft:60,
+        paddingRight:60,
         flexDirection:'row',
         justifyContent:'space-between',
         alignItems:'center',
     },
-    scrollview_item_left:{
-        color: '#4b4b4b',
-        fontSize: 14,
+    flatlist_item_left:{
+        color: '#a5a5a5',
+        fontSize: 16,
+        fontWeight:'900',
     },
-    scrollview_item_middle:{
+    flatlist_item_left_first:{
+        color: '#161616',
+        fontSize: 16,
+        fontWeight:'900',
+    },
+    flatlist_item_right:{
         flexDirection:'row',
-        alignItems:'center'
     },
-    scrollview_item_right:{
-        color: '#4b4b4b',
-        fontSize: 24,
+    flatlist_item_right_text:{
+        color: '#a5a5a5',
+        fontSize: 16,
+        fontWeight:'900',
     },
-    scrollview_item_middle_text:{
-        color: '#4b4b4b',
-        fontSize: 14,
+    flatlist_item_right_text_first:{
+        color: '#161616',
+        fontSize: 16,
+        fontWeight:'900',
     },
-    scrollview_item_right_img:{
+    flatlist_item_right_img:{
         width:20,
         height:20,
     },
@@ -233,7 +207,7 @@ export default class All extends Component {
             item.cond.code_d = 'http://minardwu.com/file/weathericon/'+item.cond.code_d+'.png';
         }
         return (
-            <View style={styles.root}>
+            <View>
                 <StatusBar
                     backgroundColor='#3d8cbf'
                     translucent={true}
@@ -244,61 +218,55 @@ export default class All extends Component {
                     <View style={styles.whole} >
                         <Image source={require('../img/bg.png')} style={styles.bg}>
                             <View style={styles.header}>
-                                <Text style={styles.text_city}>{today.basic.city}</Text>
                                 <Text style={styles.text_temp}>{today.now.tmp}°</Text>
-                                <Text style={styles.text_weather}>{today.now.cond.txt}  |  空气{today_air.aqi.city.qlty} {today_air.aqi.city.aqi} </Text>
-                            </View>
-
-                            <View style={styles.middle}>
-                                <View style={styles.middle_item}>
-                                    <Text style={styles.middle_item_text_title}>{today.now.wind.dir}</Text>
-                                    <Text style={styles.middle_item_text_value}>{today.now.wind.spd}</Text>
-                                </View>
-                                <View style={{height:40,width:1,backgroundColor:'#fffcf9',opacity: 0.5}}/>
-                                <View style={styles.middle_item}>
-                                    <Text style={styles.middle_item_text_title}>相对湿度</Text>
-                                    <Text style={styles.middle_item_text_value}>{today.now.hum}%</Text>
-                                </View>
-                                <View style={{height:40,width:1,backgroundColor:'#fffcf9',opacity: 0.5}}/>
-                                <View style={styles.middle_item}>
-                                    <Text style={styles.middle_item_text_title}>体感温度</Text>
-                                    <Text style={styles.middle_item_text_value}>{today.now.fl}°</Text>
-                                </View>
+                                <Text style={styles.text_weather}>{today.basic.city}  |  {today.now.cond.txt}  |  空气{today_air.aqi.city.qlty} {today_air.aqi.city.aqi} </Text>
                             </View>
                         </Image>
-
-                        <FlatList
-                            ItemSeparatorComponent={this._separator}
-                            onRefresh={this.refreshing}
-                            refreshing={true}
-                            data={[
-                                today_and_future.daily_forecast[0],
-                                today_and_future.daily_forecast[1],
-                                today_and_future.daily_forecast[2],
-                            ]}
-                            renderItem={({item}) =>
-                                <View style={styles.scrollview_item}>
-                                    <Text style={styles.scrollview_item_left}>{item.date}</Text>
-                                    <View style={styles.scrollview_item_middle}>
-                                        {/*<Image source={btnIons[item.cond.code_d-100]} style={styles.scrollview_item_middle_img}/>*/}
-                                        <Image source={{uri:item.cond.code_d}} style={styles.scrollview_item_right_img}/>
-                                        <Text style={styles.scrollview_item_middle_text}>  {item.cond.txt_d}</Text>
-                                    </View>
-                                    <Text style={styles.scrollview_right}>{item.tmp.min}°/{item.tmp.max}°</Text>
+                        {/*<FlatList*/}
+                            {/*style={styles.flatlist}*/}
+                            {/*onRefresh={this.refreshing}*/}
+                            {/*refreshing={true}*/}
+                            {/*data={[*/}
+                                {/*today_and_future.daily_forecast[0],*/}
+                                {/*today_and_future.daily_forecast[1],*/}
+                                {/*today_and_future.daily_forecast[2],*/}
+                            {/*]}*/}
+                            {/*renderItem={({item}) =>*/}
+                                {/*<View style={styles.flatlist_item}>*/}
+                                    {/*<Text style={styles.flatlist_item_left}>{item.date}</Text>*/}
+                                    {/*<View style={styles.flatlist_item_right}>*/}
+                                        {/*<Image source={{uri:item.cond.code_d}} style={styles.flatlist_item_right_img}/>*/}
+                                        {/*<Text style={styles.flatlist_item_right_text}>   {item.tmp.min}°-{item.tmp.max}°</Text>*/}
+                                    {/*</View>*/}
+                                {/*</View>*/}
+                            {/*}*/}
+                        {/*/>*/}
+                        <ScrollView>
+                            <View style={styles.flatlist_item}>
+                                <Text style={styles.flatlist_item_left_first}>{today_and_future.daily_forecast[0].date}</Text>
+                                <View style={styles.flatlist_item_right}>
+                                    <Image source={{uri:today_and_future.daily_forecast[0].cond.code_d}} style={styles.flatlist_item_right_img}/>
+                                    <Text style={styles.flatlist_item_right_text_first}>   {today_and_future.daily_forecast[0].tmp.min}°-{today_and_future.daily_forecast[0].tmp.max}°</Text>
                                 </View>
-                            }
-                        />
-                        <View style={styles.footer}>
-                            <Image source={require('../img/addcity.png')} style={styles.footer_img}/>
-                            <Image source={require('../img/setting.png')} style={styles.footer_img}/>
-                        </View>
+                            </View>
+                            <View style={styles.flatlist_item}>
+                                <Text style={styles.flatlist_item_left}>{today_and_future.daily_forecast[1].date}</Text>
+                                <View style={styles.flatlist_item_right}>
+                                    <Image source={{uri:today_and_future.daily_forecast[1].cond.code_d}} style={styles.flatlist_item_right_img}/>
+                                    <Text style={styles.flatlist_item_right_text}>   {today_and_future.daily_forecast[1].tmp.min}°-{today_and_future.daily_forecast[1].tmp.max}°</Text>
+                                </View>
+                            </View>
+                            <View style={styles.flatlist_item}>
+                                <Text style={styles.flatlist_item_left}>{today_and_future.daily_forecast[2].date}</Text>
+                                <View style={styles.flatlist_item_right}>
+                                    <Image source={{uri:today_and_future.daily_forecast[2].cond.code_d}} style={styles.flatlist_item_right_img}/>
+                                    <Text style={styles.flatlist_item_right_text}>   {today_and_future.daily_forecast[2].tmp.min}°-{today_and_future.daily_forecast[2].tmp.max}°</Text>
+                                </View>
+                            </View>
+                        </ScrollView>
                     </View>
                 </View>
             </View>
         );
-    }
-
-    _separator = () => {
-        return <View style={{height:0.5,backgroundColor:'#a1a1a1',opacity: 0.5,paddingLeft:20}}/>;
     }
 }

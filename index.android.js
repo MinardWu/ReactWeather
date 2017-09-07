@@ -15,6 +15,7 @@ import Swiper from 'react-native-swiper';
 import Loading from './app/Loading.js';
 import XiaoMi from './app/XiaoMi/js/XiaoMi.js';
 import Weather1 from './app/Weather1/js/Weather1.js';
+import Weather2 from './app/Weather2/js/Weather2.js';
 
 
 export default class WuWeather extends Component {
@@ -24,6 +25,9 @@ export default class WuWeather extends Component {
             showsButtons={false}
             dot={<View style={{backgroundColor: 'rgba(0,0,0,.2)', width: 4, height: 4, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
             activeDot={<View style={{backgroundColor: '#000', width: 4, height: 4, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}>
+            <View>
+                <Weather2/>
+            </View>
             <View>
                 <XiaoMi/>
             </View>
