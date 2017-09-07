@@ -14,9 +14,9 @@ import Loding from '../../Loading'
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
-var REQUEST_URL_TODAY = 'https://free-api.heweather.com/v5/now?city=hefei&key=fb085091e2844bf1ae01a22249ce57f3';
-var REQUEST_URL_TODAY_AIR = 'https://free-api.heweather.com/v5/aqi?city=hefei&key=fb085091e2844bf1ae01a22249ce57f3';
-var REQUEST_URL_TODAY_AND_FUTURE = 'https://free-api.heweather.com/v5/forecast?city=hefei&key=fb085091e2844bf1ae01a22249ce57f3';
+var REQUEST_URL_TODAY = 'https://free-api.heweather.com/v5/now?city=xiamen&key=fb085091e2844bf1ae01a22249ce57f3';
+var REQUEST_URL_TODAY_AIR = 'https://free-api.heweather.com/v5/aqi?city=xiamen&key=fb085091e2844bf1ae01a22249ce57f3';
+var REQUEST_URL_TODAY_AND_FUTURE = 'https://free-api.heweather.com/v5/forecast?city=xiamen&key=fb085091e2844bf1ae01a22249ce57f3';
 
 const styles = StyleSheet.create({
     whole: {

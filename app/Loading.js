@@ -14,7 +14,7 @@ class Loading extends Component {
   render() {
     return (
         <View style={styles.container}>
-          <Text>正在加载数据......</Text>
+          <Text>加载中...</Text>
         </View>
     );
   }

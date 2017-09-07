@@ -26,13 +26,13 @@ export default class WuWeather extends Component {
             dot={<View style={{backgroundColor: 'rgba(0,0,0,.2)', width: 4, height: 4, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}
             activeDot={<View style={{backgroundColor: '#000', width: 4, height: 4, borderRadius: 4, marginLeft: 3, marginRight: 3, marginTop: 3, marginBottom: 3}} />}>
             <View>
+                <Weather1/>
+            </View>
+            <View>
                 <Weather2/>
             </View>
             <View>
                 <XiaoMi/>
-            </View>
-            <View>
-                <Weather1/>
             </View>
         </Swiper>
     );
