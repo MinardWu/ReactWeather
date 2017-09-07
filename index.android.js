@@ -29,10 +29,10 @@ export default class WuWeather extends Component {
                 <Weather1/>
             </View>
             <View>
-                <Weather2/>
+                <XiaoMi/>
             </View>
             <View>
-                <XiaoMi/>
+                <Weather2/>
             </View>
         </Swiper>
     );
