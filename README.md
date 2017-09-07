@@ -1,7 +1,7 @@
 # WuWeather
 基于React Native制作的多种界面天气应用
 
-# Use
+# Run
 cd WuWeather
 
 Run npm install
